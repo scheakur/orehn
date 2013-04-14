@@ -21,8 +21,8 @@ public class News {
         int points;
 
         public News build() {
-            String url = CommentList.getOrehnUrl(id);
-            return new News(id, title, url, domain, commentsNum, url, points);
+            String cUrl = CommentList.getOrehnUrl(id);
+            return new News(id, title, url, domain, commentsNum, cUrl, points);
         }
 
     }
