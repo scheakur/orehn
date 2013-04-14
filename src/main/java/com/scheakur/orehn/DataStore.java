@@ -42,7 +42,7 @@ public class DataStore {
                     comment.put(news.id, commentList);
                     try {
                         Thread.sleep(1000);
-                    } catch (InterruptedException e) {
+                    } catch (InterruptedException ignore) {
                     }
                 }
 
@@ -54,27 +54,22 @@ public class DataStore {
 
 
     public List<News> getNewsList() throws ExecutionException {
-        List<News> newsList = news.get(NEWSLIST, new Callable<List<News>>() {
+        return news.get(NEWSLIST, new Callable<List<News>>() {
             @Override
             public List<News> call() throws Exception {
                 return new NewsScraper(Orehn.HACKER_NEWS_URL).scrape();
             }
         });
-
-        return newsList;
     }
 
 
     public List<Comment> getCommentList(final String id) throws ExecutionException {
-        List<Comment> commentList = comment.get(id, new Callable<List<Comment>>() {
+        return comment.get(id, new Callable<List<Comment>>() {
             @Override
             public List<Comment> call() throws Exception {
-                List<Comment> comments = new CommentScraper(id).scrape();
-                return comments;
+                return new CommentScraper(id).scrape();
             }
         });
-
-        return commentList;
     }
 
 }

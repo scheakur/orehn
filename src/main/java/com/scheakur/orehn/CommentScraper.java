@@ -12,11 +12,9 @@ import java.util.List;
 
 public class CommentScraper {
 
-    private final String id;
     private final String url;
 
     public CommentScraper(String id) {
-        this.id = id;
         this.url = CommentList.getHackerNewsUrl(id);
     }
 

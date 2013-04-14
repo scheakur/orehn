@@ -72,8 +72,7 @@ public class NewsScraper {
 
                         if (els.size() > 1) {
                             Element comments = els.get(1);
-                            String id = getId(comments);
-                            builder.id = id;
+                            builder.id = getId(comments);
                             builder.points = getPoints(subtext);
                             builder.commentsNum = getCommentsNum(comments);
                         }
@@ -86,7 +85,7 @@ public class NewsScraper {
 
             return newsList;
 
-        } catch (IOException e) {
+        } catch (IOException ignore) {
         }
 
         return Collections.emptyList();
@@ -101,24 +100,21 @@ public class NewsScraper {
 
         String numStr = extract(text, COMMENTS);
         try {
-            int commentsNum = Integer.parseInt(numStr);
-            return commentsNum;
+            return Integer.parseInt(numStr);
         } catch (NumberFormatException ignore) {}
         return 0;
     }
 
 
     String getId(Element comments) {
-        String id = extract(comments.attr("href"), COMMENTS_URL);
-        return id;
+        return extract(comments.attr("href"), COMMENTS_URL);
     }
 
 
     int getPoints(Element subtext) {
         try {
             String pointsStr = subtext.select("span").first().text();
-            int points = Integer.parseInt(extract(pointsStr, POINTS));
-            return points;
+            return Integer.parseInt(extract(pointsStr, POINTS));
         } catch (NumberFormatException ignore) {}
         return 0;
     }
