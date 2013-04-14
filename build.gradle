@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    jetty9
+}
+
+dependencies {
+    compile (
+            'com.sun.jersey:jersey-core:1.17.1',
+            'com.sun.jersey:jersey-server:1.17.1',
+            'com.sun.jersey:jersey-servlet:1.17.1',
+            'org.jsoup:jsoup:1.7.2',
+            'org.thymeleaf:thymeleaf:2.0.16',
+            'javax.servlet:javax.servlet-api:3.0.1',
+            'com.google.guava:guava:14.0.1',
+    )
+    jetty9 'org.eclipse.jetty:jetty-runner:9.0.0.v20130308'
+}
+
+task jettyRun(type: JavaExec, dependsOn: build) {
+    main = "org.eclipse.jetty.runner.Runner"
+    args = [war.archivePath]
+    classpath configurations.jetty9
+}
+

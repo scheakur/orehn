@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    line-height: 140%;
+    overflow: hidden;
+}
+
+pre code {
+    font-size: small;
+    line-height: 100%;
+}
+
+h1 {
+    padding: 0.1em 0.5em;
+    background-color: #ff6600;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr:nth-child(2n) {
+    background-color: #ffe6c0;
+}
+
+td {
+    padding: 0.5em;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+.ycombinator {
+    text-decoration: underline;
+}
+
+.ycombinator:hover {
+    color: #555;
+}
+
+.title {
+    display: block;
+}
+
+.domain {
+    color: #666;
+    font-size: small;
+    margin-left: 0.5em;
+}
+
+.points {
+    color: #a33;
+    font-size: small;
+    margin-left: 0.5em;
+}
+
+.comments {
+    display: block;
+    text-align: right;
+}
+
+.comment {
+    padding: 0.5em;
+}
+
+.comment:nth-child(2n) {
+    background-color: #ececec;
+}
+
+.comment.l1 {
+    padding-left: 1.1em;
+}
+
+.comment.l2 {
+    padding-left: 2.2em;
+}
+
+.comment.l3 {
+    padding-left: 3.3em;
+}
+
+.comment.l4 {
+    padding-left: 4.4em;
+}
+
+.comment.l5 {
+    padding-left: 5.5em;
+}
+
+.comment.l6 {
+    padding-left: 6.6em;
+}
+
+.comment.l7 {
+    padding-left: 7.7em;
+}
+
+.comment.l8 {
+    padding-left: 8.8em;
+}
+
+.comment.l9 {
+    padding-left: 9.9em;
+}
+
+.detail:first-child {
+    margin-top: 0;
+}
+
+.detail {
+    margin-top: 0.5em;
+}
+
+.detail a {
+    text-decoration: underline;
+}

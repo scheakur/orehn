@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ore no Hacker News</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+    </head>
+    <body>
+        <h1><a href="/orehn">Ore no </a><a class="ycombinator" href="https://news.ycombinator.com/">Hacker News</a></h1>
+        <table class="content">
+            <tbody>
+                <tr th:each="news : ${it}">
+                    <td><a class="title" href="/" th:href="${news.url}">
+                        <span th:text="${news.title}">title</span>
+                        <span class="domain" th:text="${news.domain}">domain</span>
+                        <span class="points" th:text="${news.points}">100</span>
+                    </a></td>
+                    <td><a class="comments" href="/" th:href="${news.commentsUrl}" th:text="${news.commentsNum}">10</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
