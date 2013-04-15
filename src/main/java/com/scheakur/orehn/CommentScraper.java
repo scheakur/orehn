@@ -43,6 +43,9 @@ public class CommentScraper {
                     builder.add(textEl.toString());
                 }
 
+                Element user = comment.select(".comhead a").first();
+                builder.user = user.text();
+
                 list.add(builder.build());
             }
 

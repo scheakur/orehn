@@ -109,6 +109,13 @@ a {
     padding-left: 9.9em;
 }
 
+.user {
+    color: #a40;
+    line-height: 100%;
+    font-size: small;
+    font-weight: bold;
+}
+
 .detail:first-child {
     margin-top: 0;
 }

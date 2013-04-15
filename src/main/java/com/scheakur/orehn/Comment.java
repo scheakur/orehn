@@ -7,6 +7,7 @@ public class Comment {
 
     public static class Builder {
 
+        public String user;
         public List<Detail> details;
         public int level;
 
@@ -20,7 +21,7 @@ public class Comment {
         }
 
         public Comment build() {
-            return new Comment(details, level);
+            return new Comment(user, details, level);
         }
 
     }
@@ -39,10 +40,12 @@ public class Comment {
 
     }
 
+    public final String user;
     public final List<Detail> details;
     public final int level;
 
-    public Comment(List<Detail> details, int level) {
+    public Comment(String user, List<Detail> details, int level) {
+        this.user = user;
         this.details = details;
         this.level = level;
     }
