@@ -57,7 +57,7 @@ public class NewsScraper {
                         Element titleEl = titles.get(1);
                         Element a = titleEl.select("a").first();
                         builder.title = a.text();
-                        builder.url = a.attr("href");
+                        builder.url = getUrl(a);
                         Elements comhead = titleEl.select(".comhead");
                         if (comhead.size() > 0) {
                             String domain = comhead.first().text();
@@ -91,6 +91,15 @@ public class NewsScraper {
         return Collections.emptyList();
     }
 
+
+    String getUrl(Element a) {
+        String url = a.attr("href");
+        if (!COMMENTS_URL.matcher(url).matches()) {
+            return url;
+        }
+        String id =  getId(a);
+        return CommentList.getOrehnUrl(id);
+    }
 
     int getCommentsNum(Element comments) {
         String text = comments.text();
