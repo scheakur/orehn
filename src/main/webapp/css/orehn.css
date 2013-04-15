@@ -6,6 +6,7 @@
 .content {
     line-height: 140%;
     overflow: hidden;
+    color: #333;
 }
 
 pre code {
@@ -70,7 +71,7 @@ a {
 }
 
 .comment:nth-child(2n) {
-    background-color: #ececec;
+    background-color: #f0f0f0;
 }
 
 .comment.l1 {

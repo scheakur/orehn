@@ -35,7 +35,7 @@ public class Comment {
         }
 
         public String toString() {
-            return text;
+            return text.replaceAll("<font color=\"#000000\">", "<font>");
         }
 
     }
