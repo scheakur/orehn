@@ -32,7 +32,7 @@ public class NewsScraper {
     public List<News> scrape() {
 
         try {
-            Document doc = Jsoup.connect(url).get();
+            Document doc = Jsoup.connect(url).userAgent("Ore no Hacker News").get();
 
             Elements trs = doc.select(
                     "body > center > " +
