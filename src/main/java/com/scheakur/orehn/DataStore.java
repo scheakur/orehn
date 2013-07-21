@@ -37,14 +37,13 @@ public class DataStore {
         TimerTask scrape = new TimerTask() {
             @Override
             public void run() {
-                List<News> newsList =
-                        Optional.of(new NewsScraper(Orehn.HACKER_NEWS_URL).scrape())
-                                .or(Collections.<News>emptyList());
+                List<News> newsList = new NewsScraper(Orehn.HACKER_NEWS_URL).scrape();
+                if (newsList.isEmpty()) {
+                    return;
+                }
                 news.put(NEWSLIST, newsList);
                 for (News news : newsList) {
-                    List<Comment> commentList =
-                            Optional.of(new CommentScraper(news.id).scrape())
-                                    .or(Collections.<Comment>emptyList());
+                    List<Comment> commentList = new CommentScraper(news.id).scrape();
                     comment.put(news.id, commentList);
                     try {
                         Thread.sleep(1000);
