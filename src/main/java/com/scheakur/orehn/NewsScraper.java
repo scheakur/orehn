@@ -88,7 +88,7 @@ public class NewsScraper {
         } catch (IOException ignore) {
         }
 
-        return Collections.emptyList();
+        return null;
     }
 
 

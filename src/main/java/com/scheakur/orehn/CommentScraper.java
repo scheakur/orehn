@@ -52,7 +52,7 @@ public class CommentScraper {
             return list;
         } catch (IOException ignore) {}
 
-        return Collections.emptyList();
+        return null;
     }
 
 

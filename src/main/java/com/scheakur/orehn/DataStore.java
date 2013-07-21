@@ -1,8 +1,10 @@
 package com.scheakur.orehn;
 
+import com.google.common.base.Optional;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.TimerTask;
 import java.util.concurrent.*;
@@ -35,10 +37,14 @@ public class DataStore {
         TimerTask scrape = new TimerTask() {
             @Override
             public void run() {
-                List<News> newsList = new NewsScraper(Orehn.HACKER_NEWS_URL).scrape();
+                List<News> newsList =
+                        Optional.of(new NewsScraper(Orehn.HACKER_NEWS_URL).scrape())
+                                .or(Collections.<News>emptyList());
                 news.put(NEWSLIST, newsList);
                 for (News news : newsList) {
-                    List<Comment> commentList = new CommentScraper(news.id).scrape();
+                    List<Comment> commentList =
+                            Optional.of(new CommentScraper(news.id).scrape())
+                                    .or(Collections.<Comment>emptyList());
                     comment.put(news.id, commentList);
                     try {
                         Thread.sleep(1000);
