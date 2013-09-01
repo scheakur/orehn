@@ -30,65 +30,65 @@ public class NewsScraper {
     }
 
     public List<News> scrape() {
-
         try {
             Document doc = Jsoup.connect(url).userAgent("Ore no Hacker News").get();
-
-            Elements trs = doc.select(
-                    "body > center > " +
-                    "table > tbody > tr > td > " +
-                    "table > tbody > tr");
-
-            int num = 0;
-
-            List<News> newsList = new ArrayList<>();
-
-            News.Builder builder = null;
-
-            out: for (Element tr : trs) {
-                switch (num % 3) {
-                    case 1:
-                        Elements titles = tr.select(".title");
-                        if (titles.size() < 2) {
-                            break out;
-                        }
-                        builder = new News.Builder();
-
-                        Element titleEl = titles.get(1);
-                        Element a = titleEl.select("a").first();
-                        builder.title = a.text();
-                        builder.url = getUrl(a);
-                        Elements comhead = titleEl.select(".comhead");
-                        if (comhead.size() > 0) {
-                            String domain = comhead.first().text();
-                            builder.domain = extract(domain, DOMAIN);
-                        }
-                        break;
-
-                    case 2:
-                        assert builder != null;
-                        Element subtext = tr.select(".subtext").first();
-                        Elements els = subtext.select("a");
-
-                        if (els.size() > 1) {
-                            Element comments = els.get(1);
-                            builder.id = getId(comments);
-                            builder.points = getPoints(subtext);
-                            builder.commentsNum = getCommentsNum(comments);
-                        }
-
-                        newsList.add(builder.build());
-                        break;
-                }
-                num++;
-            }
-
-            return newsList;
-
+            return scrape(doc);
         } catch (IOException ignore) {
         }
-
         return Collections.emptyList();
+    }
+
+    public List<News> scrape(Document doc) {
+        Elements trs = doc.select(
+                "body > center > " +
+                "table > tbody > tr > td > " +
+                "table > tbody > tr");
+
+        int num = 0;
+
+        List<News> newsList = new ArrayList<>();
+
+        News.Builder builder = null;
+
+        out: for (Element tr : trs) {
+            switch (num % 3) {
+                case 1:
+                    Elements titles = tr.select(".title");
+                    if (titles.size() < 2) {
+                        break out;
+                    }
+                    builder = new News.Builder();
+
+                    Element titleEl = titles.get(1);
+                    Element a = titleEl.select("a").first();
+                    builder.title = a.text();
+                    builder.url = getUrl(a);
+                    Elements comhead = titleEl.select(".comhead");
+                    if (comhead.size() > 0) {
+                        String domain = comhead.first().text();
+                        builder.domain = extract(domain, DOMAIN);
+                    }
+                    break;
+
+                case 2:
+                    assert builder != null;
+                    Element subtext = tr.select(".subtext").first();
+                    Elements els = subtext.select("a");
+
+                    if (els.size() > 1) {
+                        Element comments = els.get(1);
+                        builder.id = getId(comments);
+                        builder.points = getPoints(subtext);
+                        builder.commentsNum = getCommentsNum(comments);
+                    }
+
+                    newsList.add(builder.build());
+                    break;
+            }
+            num++;
+        }
+
+        return newsList;
     }
 
 
