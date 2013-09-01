@@ -21,6 +21,7 @@ dependencies {
             'org.thymeleaf:thymeleaf:2.0.16',
             'javax.servlet:javax.servlet-api:3.0.1',
             'com.google.guava:guava:14.0.1',
+            'junit:junit:4.11',
     )
     jetty9 'org.eclipse.jetty:jetty-runner:9.0.0.v20130308'
 }
