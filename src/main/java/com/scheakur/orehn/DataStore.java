@@ -39,7 +39,10 @@ public class DataStore {
             public void run() {
                 List<News> newsList = new NewsScraper(Orehn.HACKER_NEWS_URL).scrape();
                 if (newsList.isEmpty()) {
-                    return;
+                    try {
+                        newsList = DataStore.this.getNewsList();
+                    } catch (ExecutionException ignore) {
+                    }
                 }
                 news.put(NEWSLIST, newsList);
                 for (News news : newsList) {
