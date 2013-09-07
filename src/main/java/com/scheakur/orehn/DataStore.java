@@ -23,13 +23,13 @@ public class DataStore {
         news = CacheBuilder.newBuilder()
                 .initialCapacity(1)
                 .maximumSize(1)
-                .expireAfterWrite(960, TimeUnit.SECONDS)
+                .expireAfterWrite(1860, TimeUnit.SECONDS)
                 .build();
 
         comment = CacheBuilder.newBuilder()
                 .initialCapacity(60)
                 .maximumSize(60)
-                .expireAfterWrite(1800, TimeUnit.SECONDS)
+                .expireAfterWrite(3600, TimeUnit.SECONDS)
                 .build();
 
         ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
@@ -57,7 +57,7 @@ public class DataStore {
             }
         };
 
-        executor.scheduleWithFixedDelay(scrape, 1, 900, TimeUnit.SECONDS);
+        executor.scheduleWithFixedDelay(scrape, 1, 1800, TimeUnit.SECONDS);
     }
 
 
